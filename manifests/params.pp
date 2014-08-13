@@ -21,7 +21,7 @@ class mysql::params {
   $python_package_provider = undef
   $ruby_package_ensure     = 'present'
   $ruby_package_provider   = undef
-
+  $config_galera           = true
 
   case $::osfamily {
     'RedHat': {
@@ -46,8 +46,13 @@ class mysql::params {
       }
 
       if $provider == 'mariadb' {
+        if $config_galera {
+          $mariadb_server_package_real = 'mariadb-galera-server'
+        } else {
+          $mariadb_server_package_real = 'mariadb-server'
+        }
         $client_package_name = 'mariadb'
-        $server_package_name = 'mariadb-server'
+        $server_package_name = $mariadb_server_package_real
         $server_service_name = 'mariadb'
         $log_error           = '/var/log/mariadb/mariadb.log'
         $config_file         = '/etc/my.cnf'

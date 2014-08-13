@@ -18,7 +18,7 @@ class mysql::server (
   $users                   = {},
   $grants                  = {},
   $databases               = {},
-
+  $config_galera           = $mysql::params::config_galera,
   # Deprecated parameters
   $enabled                 = undef,
   $manage_service          = undef

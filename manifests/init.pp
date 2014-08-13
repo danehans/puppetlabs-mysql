@@ -32,6 +32,7 @@ class mysql(
   $ssl_cert              = '',
   $ssl_key               = '',
   $tmpdir                = '',
+  $config_galera         = '',
   $attempt_compatibility_mode = false,
 ) {
 
@@ -76,6 +77,7 @@ class mysql(
       'root_group'           => $root_group,
       'root_password'        => $root_password,
       'service_name'         => $service_name,
+      'config_galera'        => $config_galera,
       'ssl'                  => $ssl
     }
     $filtered_options = mysql_strip_hash($override_options)
